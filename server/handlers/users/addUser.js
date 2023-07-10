@@ -81,7 +81,14 @@ const addUser = async (request, response) => {
     response.status(200).json({
       status: 200,
       message: "New user added.",
-      data: newUser,
+      data: {
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        isAdmin: newUser.isAdmin,
+        favorites: newUser.favorites,
+        reviews: newUser.reviews,
+      },
     });
   } catch (error) {
     console.error(error);

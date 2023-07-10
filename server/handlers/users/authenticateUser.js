@@ -28,7 +28,14 @@ const authenticateUser = async (request, response) => {
     if (bcrypt.compareSync(password, result.passwordHash)) {
       response.status(200).json({
         status: 200,
-        data: result,
+        data: {
+          _id: result._id,
+          name: result.name,
+          email: result.email,
+          isAdmin: result.isAdmin,
+          favorites: result.favorites,
+          reviews: result.reviews,
+        },
         authenticated: true,
         message: "Authentication successful.",
       });
