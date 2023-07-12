@@ -31,6 +31,7 @@ const addReview = async (request, response) => {
       !review.userId ||
       !review.itemId ||
       !review.text ||
+      !review.client ||
       !review.rating ||
       !review.traits
     ) {
@@ -41,26 +42,13 @@ const addReview = async (request, response) => {
       throw new Error("Missing information.");
     }
 
-    /**
-     * {
-     *      hair: {
-     *          string thickness: fine, medium, coarse
-     *          string color: none, light, medium, dark,
-     *          string density: (low, medium, high)
-     *      }
-     *      skin : {
-     *          string tone: 1 to 6,
-     *          array- type: [normal, dry, aged, combination, sensitive, aging, acne-prone]
-     *      }
-     * }
-     */
-
     // information to add user
     const newReview = {
       _id: uuidv4(),
       userId: review.userId,
       itemId: review.itemId,
       rating: review.rating,
+      client: review.client,
       text: review.text,
       traits: review.traits,
     };

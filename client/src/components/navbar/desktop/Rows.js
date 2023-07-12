@@ -1,10 +1,11 @@
 import { useNavigate, NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 import Dropdown from "./Dropdown";
-import { bodyOptions, faceOptions } from "../constants";
+import { bodyOptions, faceOptions } from "../../../helpers/constants";
 import { UserContext } from "../../../context/UserContext";
 import { useContext } from "react";
 
+// component in the header showing the menu for desktop in rows
 const Rows = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useContext(UserContext);
@@ -32,17 +33,18 @@ const Rows = () => {
           </NavOption>
           <NavOption
             onClick={() => {
-              navigate("/proposals");
+              navigate("/submission");
             }}
           >
             {" "}
-            Proposal{" "}
+            Request{" "}
           </NavOption>
           <NavOption
             onClick={() => {
               setCurrentUser(null);
               window.sessionStorage.removeItem("currentUser");
-          }}
+              navigate("/");
+            }}
           >
             {" "}
             Log Out{" "}
@@ -61,6 +63,9 @@ const Rows = () => {
   );
 };
 
+export default Rows;
+
+// styling
 const Wrapper = styled.div`
   display: flex;
   height: 100%;
@@ -87,5 +92,3 @@ const NavOption = styled.div`
     display: flex;
   }
 `;
-
-export default Rows;

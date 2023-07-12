@@ -25,6 +25,17 @@ const authenticateUser = async (request, response) => {
 
     const result = await db.collection("users").findOne({ email: email });
 
+    if (!result) {
+      response
+        .status(404)
+        .json({
+          status: 404,
+          message: "Email is not connected to any account.",
+        });
+      client.close();
+      return;
+    }
+
     if (bcrypt.compareSync(password, result.passwordHash)) {
       response.status(200).json({
         status: 200,
@@ -43,7 +54,7 @@ const authenticateUser = async (request, response) => {
       response.status(401).json({
         status: 401,
         authenticated: false,
-        message: "Unauthorized.",
+        message: "Password incorrect.",
       });
     }
   } catch (error) {

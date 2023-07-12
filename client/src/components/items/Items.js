@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import ItemCard from "./ItemCard";
 import { styled } from "styled-components";
-import loadingTransparent from "../../assets/loadingTransparent.gif"
+import loadingTransparent from "../../assets/loadingTransparent.gif";
 
 // component for multiple items
 const Items = () => {
@@ -34,12 +34,13 @@ const Items = () => {
       } else {
         if (mounted) {
           setItems(data.items);
+          // fetchReviews();
         }
       }
     };
 
-    const fetchReviews = async (reviewId) => {
-      const response = await fetch(`/api/reviews/${reviewId}}`);
+    const fetchReviews = async (itemId) => {
+      const response = await fetch(`/api/reviews/${itemId}`);
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);
@@ -59,10 +60,13 @@ const Items = () => {
 
   return (
     <Box>
- 
       {items ? (
         <div>
-          <Title>{searchParams.has('name') ? searchParams.get('name') : "All Technologies"}</Title>
+          <Title>
+            {searchParams.has("name")
+              ? searchParams.get("name")
+              : "All Technologies"}
+          </Title>
           <Container>
             {items.map((item) => {
               return <ItemCard key={item.name} item={item} />;
@@ -70,15 +74,15 @@ const Items = () => {
           </Container>
         </div>
       ) : (
-        <img src={loadingTransparent}/>
-      )    
-    }
+        <img src={loadingTransparent} />
+      )}
     </Box>
   );
 };
 
 export default Items;
 
+// styling
 const Title = styled.p`
   font-size: 1.7rem;
   text-align: center;
@@ -89,15 +93,15 @@ const Title = styled.p`
 
 const Container = styled.div`
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   flex-direction: column;
   @media only screen and (min-width: 960px) {
-    flex-direction: row;    
-    flex-wrap:wrap;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 `;
 
 const Box = styled.div`
-    display: flex;
-    justify-content: center;
-`
+  display: flex;
+  justify-content: center;
+`;

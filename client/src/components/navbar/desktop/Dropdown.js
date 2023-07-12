@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
-import { useNavigate, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
+// component in header for the dropdown menu
 const Dropdown = ({ children, options }) => {
   return (
     <Link>
@@ -10,7 +10,9 @@ const Dropdown = ({ children, options }) => {
         <DropdownWrapper>
           {options.map((option, index) => {
             return (
-              <StyledNavLink key={index} to={option.link}>{option.name}</StyledNavLink>
+              <StyledNavLink key={index} to={option.link}>
+                {option.name}
+              </StyledNavLink>
             );
           })}
         </DropdownWrapper>
@@ -19,6 +21,7 @@ const Dropdown = ({ children, options }) => {
   );
 };
 
+// styling
 const DropdownWrapper = styled.div`
   display: none;
   position: absolute;

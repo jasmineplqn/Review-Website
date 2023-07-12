@@ -6,7 +6,15 @@ const MenuAccordion = ({ options, setShowMenu }) => {
   return (
     <>
       {options.map((option) => {
-        return <AccordionRow key={option.name} onClick={() => setShowMenu(false)} to={option.link}>{option.name}</AccordionRow>;
+        return (
+          <AccordionRow
+            key={option.name}
+            onClick={() => setShowMenu(false)}
+            to={option.link}
+          >
+            {option.name}
+          </AccordionRow>
+        );
       })}
     </>
   );
@@ -14,6 +22,7 @@ const MenuAccordion = ({ options, setShowMenu }) => {
 
 export default MenuAccordion;
 
+// styling
 const AccordionRow = styled(NavLink)`
   text-decoration: none;
   font-weight: normal;

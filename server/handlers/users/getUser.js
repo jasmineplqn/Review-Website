@@ -25,9 +25,18 @@ const getUser = async (request, response) => {
 
     const result = await db.collection("users").findOne({ _id: userId });
     result
-      ? response
-          .status(200)
-          .json({ status: 200, data: result, message: "User details" })
+      ? response.status(200).json({
+          status: 200,
+          data: {
+            _id: result._id,
+            name: result.name,
+            email: result.email,
+            isAdmin: result.isAdmin,
+            favorites: result.favorites,
+            reviews: result.reviews,
+          },
+          message: "User details",
+        })
       : response.status(404).json({ status: 404, message: "Not Found" });
   } catch (error) {
     console.error(error);

@@ -50,7 +50,7 @@ export default createGlobalStyle`
         content: '';
         content: none;
     }
-    h1, p, span, h2, h3, a, label, button, input {
+    h1, p, span, h2, h3, a, label, button, input, textarea {
         font-family: var(--content-font-family);
     }
  

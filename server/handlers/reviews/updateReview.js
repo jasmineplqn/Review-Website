@@ -1,5 +1,4 @@
 const { MongoClient } = require("mongodb");
-const { validateLocation } = require("../../helpers/constants");
 
 const errorMessages = ["Review not found.", "Missing information."];
 
@@ -37,7 +36,7 @@ const updateReview = async (request, response) => {
 
     const review = request.body;
 
-    if (!review.text || !review.traits || !review.rating) {
+    if (!review.text || !review.traits || !review.rating || !review.client) {
       response.status(400).json({
         status: 400,
         message: "Missing information.",
@@ -45,24 +44,11 @@ const updateReview = async (request, response) => {
       throw new Error("Missing information.");
     }
 
-    /**
-     * {
-     *      hair: {
-     *          string thickness: fine, medium, coarse
-     *          string color: none, light, medium, dark,
-     *          string density: (low, medium, high)
-     *      }
-     *      skin : {
-     *          string tone: 1 to 6,
-     *          array- type: [normal, dry, aged, combination, sensitive, aging, acne-prone]
-     *      }
-     * }
-     */
-
     const updatedReview = {
       text: review.text,
       rating: review.rating,
       traits: review.traits,
+      client: review.client,
     };
 
     await db.collection("reviews").updateOne(

@@ -3,9 +3,9 @@ import MenuRow from "./MenuRow";
 import { UserContext } from "../../../context/UserContext";
 import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { bodyOptions, faceOptions } from "../constants";
+import { bodyOptions, faceOptions } from "../../../helpers/constants";
 
-// what is displayed on the navbar
+// component in the header showing the menu for mobile
 const Menu = ({ setShowMenu }) => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useContext(UserContext);
@@ -40,17 +40,18 @@ const Menu = ({ setShowMenu }) => {
           <MenuRow
             onClick={() => {
               setShowMenu(false);
-              navigate("/proposals");
+              navigate("/submission");
             }}
           >
             {" "}
-            Proposal{" "}
+            Request{" "}
           </MenuRow>
           <MenuRow
             onClick={() => {
               setShowMenu(false);
               setCurrentUser(null);
               window.sessionStorage.removeItem("currentUser");
+              navigate("/");
             }}
           >
             {" "}
@@ -73,13 +74,13 @@ const Menu = ({ setShowMenu }) => {
 
 export default Menu;
 
+// styling
 const Container = styled.div`
   margin-top: 0.2rem;
   position: relative;
   z-index: 1;
   background-color: white;
   font-weight: bold;
-
   @media only screen and (min-width: 960px) {
     display: none;
   }

@@ -1,28 +1,30 @@
 import { styled } from "styled-components";
 
+// about the website component
 const About = () => {
   return (
     <Container>
       <Title>About</Title>
       <Text>
-        Welcome to NAME, an online community dedicated to connecting individuals
-        with a passion for professional skin care machines. This is a platform
-        where like-minded enthusiasts can freely express their opinions, share
-        experiences, and review various machines without the influence of biased
-        advertisements or opinions associated with clinics. Our goal is to
-        foster a supportive and knowledgeable community that empowers
-        individuals to make informed decisions about their skin care routines.
-        At NAME, we understand the importance of finding reliable information
-        and unbiased reviews when it comes to professional skin care machines.
-        Many individuals are interested in investing in these advanced devices
-        to enhance their skin care regimens, but often find it challenging to
-        navigate through marketing strategies and promotional content that may
-        cloud their judgment. Our community was created to bridge this gap by
-        providing a platform where users can share authentic and transparent
-        experiences with professional skin care machines. Whether you're a
-        professional aesthetician, a skincare enthusiast, or someone looking to
-        explore the world of advanced skin care technologies, you'll find a
-        welcoming space here.{" "}
+        Welcome to <Logo>skinTech Report</Logo>, an online community dedicated
+        to connecting individuals with a passion for professional skin care
+        machines. This is a platform where like-minded enthusiasts can freely
+        express their opinions, share experiences, and review various machines
+        without the influence of biased advertisements or opinions associated
+        with clinics. Our goal is to foster a supportive and knowledgeable
+        community that empowers individuals to make informed decisions about
+        their skin care routines. At <Logo>skinTech Report</Logo>, we understand
+        the importance of finding reliable information and unbiased reviews when
+        it comes to professional skin care machines. Many individuals are
+        interested in investing in these advanced devices to enhance their skin
+        care regimens, but often find it challenging to navigate through
+        marketing strategies and promotional content that may cloud their
+        judgment. Our community was created to bridge this gap by providing a
+        platform where users can share authentic and transparent experiences
+        with professional skin care machines. Whether you're a professional
+        aesthetician, a skincare enthusiast, or someone looking to explore the
+        world of advanced skin care technologies, you'll find a welcoming space
+        here.{" "}
       </Text>
       <SecondaryHeadline>Our Integrity</SecondaryHeadline>
       <Text>
@@ -32,18 +34,20 @@ const About = () => {
         allows us to maintain integrity and provide objective information to our
         users. Joining our community is easy and free. Simply create an account,
         and you'll gain access to a platform where your voice can be heard. We
-        encourage you to contribute, share your experiences. Thank you for
-        choosing NAME Together, we can build a vibrant and trusted resource that
-        empowers individuals to achieve their skincare goals with confidence.
+        encourage you to contribute and share your experiences. Thank you for
+        choosing <Logo>skinTech Report</Logo>. Together, we can build a vibrant
+        and trusted resource that empowers individuals to achieve their skincare
+        goals with confidence.
       </Text>
       <SecondaryHeadline>Our Guidelines</SecondaryHeadline>
       <Text>
-        Website Guidelines: Comment and Account Moderation At [Website Name], we
-        strive to maintain a positive and respectful community for all users. To
-        ensure a safe and valuable experience, our administrators have the
-        authority to remove comments or user accounts if they are deemed
-        inappropriate or violate our guidelines. Here are some examples of
-        instances where such action may be taken:
+        Website Guidelines: Comment and Account Moderation At{" "}
+        <Logo>skinTech Report</Logo>, we strive to maintain a positive and
+        respectful community for all users. To ensure a safe and valuable
+        experience, our administrators have the authority to remove comments or
+        user accounts if they are deemed inappropriate or violate our
+        guidelines. Here are some examples of instances where such action may be
+        taken:
       </Text>
       <Text>
         <ol type="1">
@@ -111,6 +115,7 @@ const About = () => {
 
 export default About;
 
+// styling
 const Container = styled.div`
   margin: 1rem;
 `;
@@ -139,5 +144,9 @@ const Exemples = styled.li`
 
 const Number = styled.span`
   color: var(--content-color);
-  font-size:2rem;
+  font-size: 2rem;
+`;
+
+const Logo = styled.span`
+  color: var(--content-color);
 `;

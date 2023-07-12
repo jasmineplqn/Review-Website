@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
+// stylings that are reused
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
   align-items: center;
   margin-top: 2rem;
+  @media only screen and (min-width: 960px) {
+  }
 `;
 
 const Form = styled.form`
@@ -49,4 +52,27 @@ const Button = styled.button`
   }
 `;
 
-export { Container, Form, Input, Title, Button };
+const ErrorMsg = styled.p`
+  color: red;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  @media only screen and (min-width: 960px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const Status = styled.p`
+  color: #23c129;
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  @media only screen and (min-width: 960px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const StatusBox = styled.div`
+  margin: 1rem 0;
+  text-align: center;
+`;
+
+export { Container, Form, Input, Title, Button, ErrorMsg, Status, StatusBox };

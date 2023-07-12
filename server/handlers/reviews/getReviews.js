@@ -25,11 +25,11 @@ const getReviews = async (request, response) => {
     let reviews = await reviewsCollection.find().toArray();
 
     // to get all reviews depending on the query
-    if (itemId) {
-      reviews = reviews.filter((review) => review.userId == userId);
-    }
     if (userId) {
-      reviews = reviews.filter((review) => (review.itemId = itemId));
+      reviews = reviews.filter((review) => review.userId === userId);
+    }
+    if (itemId) {
+      reviews = reviews.filter((review) => review.itemId === itemId);
     }
 
     // Send the reviews as a JSON response.

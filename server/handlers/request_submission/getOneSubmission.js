@@ -23,7 +23,9 @@ const getOneSubmission = async (request, response) => {
     await client.connect();
     const db = client.db("Dev");
 
-    const result = await db.collection("submissions").findOne({ _id: submissionId });
+    const result = await db
+      .collection("submissions")
+      .findOne({ _id: submissionId });
     result
       ? response
           .status(200)

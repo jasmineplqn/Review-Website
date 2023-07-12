@@ -32,7 +32,9 @@ const MenuRow = ({ children, options, onClick, setShowMenu }) => {
               />
             )}
           </Title>
-          {options && showRow && <MenuAccordion setShowMenu={setShowMenu} options={options} />}
+          {options && showRow && (
+            <MenuAccordion setShowMenu={setShowMenu} options={options} />
+          )}
         </>
       )}
     </RowContainer>
@@ -41,6 +43,7 @@ const MenuRow = ({ children, options, onClick, setShowMenu }) => {
 
 export default MenuRow;
 
+// styling
 const RowContainer = styled.div`
   display: block;
   width: 100%;

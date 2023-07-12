@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+// component showing one item
 const ItemCard = ({ item }) => {
   const navigate = useNavigate();
 
@@ -14,6 +15,7 @@ const ItemCard = ({ item }) => {
 
 export default ItemCard;
 
+// styling
 const Card = styled.div`
   padding: 2rem;
   display: flex;

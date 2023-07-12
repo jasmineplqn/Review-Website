@@ -2,7 +2,11 @@ const { MongoClient } = require("mongodb");
 const bcrypt = require("bcrypt");
 const { validatePassword } = require("../../helpers/constants");
 
-const errorMessages = ["User not found.", "Missing information."];
+const errorMessages = [
+  "User not found.",
+  "Missing information.",
+  "Invalid paswword.",
+];
 
 require("dotenv").config();
 
@@ -38,7 +42,7 @@ const updateUser = async (request, response) => {
 
     const user = request.body;
 
-    if (!user.name || !user.email || !user.password) {
+    if (!user.name || !user.email) {
       response.status(400).json({
         status: 400,
         message: "Missing information.",
@@ -46,17 +50,20 @@ const updateUser = async (request, response) => {
       throw new Error("Missing information.");
     }
 
-    // Validate password
-    const passwordErrors = validatePassword(user.password);
-    if (passwordErrors.length !== 0) {
-      response.status(400).json({
-        status: 400,
-        message: passwordErrors.join(" "),
-      });
-      throw new Error("Invalid paswword.");
-    }
+    let passwordHash = checkUser.passwordHash;
+    if (user.password) {
+      // Validate password
+      const passwordErrors = validatePassword(user.password);
+      if (passwordErrors.length !== 0) {
+        response.status(400).json({
+          status: 400,
+          message: passwordErrors.join(" "),
+        });
+        throw new Error("Invalid paswword.");
+      }
 
-    let passwordHash = bcrypt.hashSync(user.password, 16);
+      passwordHash = bcrypt.hashSync(user.password, 16);
+    }
 
     const updatedUser = {
       email: user.email,

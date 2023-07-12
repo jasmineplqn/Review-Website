@@ -23,6 +23,7 @@ const {
 } = require("./handlers/request_submission/updateSubmission");
 const { addReview } = require("./handlers/reviews/addReview");
 const { deleteReview } = require("./handlers/reviews/deleteReview");
+const { getReview } = require("./handlers/reviews/getReview");
 const { getReviews } = require("./handlers/reviews/getReviews");
 const { updateReview } = require("./handlers/reviews/updateReview");
 const { addFavorite } = require("./handlers/users/addFavorite");
@@ -84,6 +85,8 @@ router.post("/api/authenticate", authenticateUser);
 // ROUTES FOR REVIEWS
 // gets all reviews of one technology or one user
 router.get("/api/reviews", getReviews);
+// gets one review
+router.get("/api/reviews/:reviewId", getReview);
 // adds new review
 router.post("/api/reviews", addReview);
 // updates one review by the same user

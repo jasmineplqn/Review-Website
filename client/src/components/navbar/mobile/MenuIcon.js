@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 // layout of hamburger
 const MenuIcon = ({ open, onClick }) => {
   return (
@@ -10,6 +11,7 @@ const MenuIcon = ({ open, onClick }) => {
   );
 };
 
+// styling
 const Lines = styled.button`
   display: flex;
   flex-direction: column;

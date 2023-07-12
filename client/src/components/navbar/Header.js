@@ -2,32 +2,34 @@ import styled from "styled-components";
 import MenuIcon from "./mobile/MenuIcon";
 import Menu from "./mobile/Menu";
 import { useState } from "react";
-import {NavLink} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import Rows from "./desktop/Rows";
-const Header = () => {
 
-const [showMenu, setShowMenu] = useState(false);
+// header component showing the navbar
+const Header = () => {
+  const navigate = useNavigate();
+
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <Wrapper>
       <NavBar>
-        <div>LOGO</div>
-        <Rows/>
+        <div onClick={() => navigate("/")}>
+          <Logo>skinTech Report</Logo>
+        </div>
+        <Rows />
         <Box>
-            <MenuIcon open={showMenu} onClick={() => setShowMenu(!showMenu)} />
+          <MenuIcon open={showMenu} onClick={() => setShowMenu(!showMenu)} />
         </Box>
       </NavBar>
-      {
-        showMenu && <Menu setShowMenu={setShowMenu}/>
-      }
-
+      {showMenu && <Menu setShowMenu={setShowMenu} />}
     </Wrapper>
   );
 };
 
 export default Header;
 
-
+// styling
 const NavBar = styled.div`
   display: flex;
   height: 100%;
@@ -50,32 +52,21 @@ const Wrapper = styled.div`
   @media only screen and (min-width: 600px) {
     height: var(--header-height);
   }
-  /* @media only screen and (min-width: 768px) {
-    height: var(--header-height);
-  } */
 `;
 
 const Logo = styled.h1`
   font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  font-weight: normal;
+  color: var(--content-color);
+  cursor: pointer;
 `;
 
 const Box = styled.div`
   display: flex;
   color: white;
   font-size: 1rem;
-
   @media only screen and (min-width: 960px) {
     display: none;
   }
 `;
-
-const Info = styled.p`
-  margin-right: 0.5rem;
-  padding-right: 0.5rem;
-  border-right: 2px solid var(--content-color);
-  &:hover {
-    color: white;
-  }
-`;
-
-const Contacts = styled.div``;
