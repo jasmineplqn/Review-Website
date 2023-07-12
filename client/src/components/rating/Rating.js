@@ -3,7 +3,7 @@ import { star } from "react-icons-kit/fa/star";
 import Icon from "react-icons-kit";
 import { styled } from "styled-components";
 
-// rating with star icon
+// shows the rating with star icon (cannot click it)
 const Rating = ({ rating, size = 16 }) => {
   try {
     const numberRating = Number(rating);

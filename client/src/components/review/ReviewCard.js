@@ -30,7 +30,7 @@ const ReviewCard = ({ review, refresh, showUser, showItem }) => {
 
     const fetchUser = async () => {
       // Get user for every review
-      if (currentUser) {
+      if (review.userId) {
         const response = await fetch(`/api/users/${review.userId}`);
         const data = await response.json();
         if (data.status === 400 || data.status === 500) {

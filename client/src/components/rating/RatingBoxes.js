@@ -3,6 +3,7 @@ import { star } from "react-icons-kit/fa/star";
 import Icon from "react-icons-kit";
 import { styled } from "styled-components";
 
+// click to choose the rating with star icon
 const RatingBoxes = ({ rating, setRating, size = 16 }) => {
   try {
     return (

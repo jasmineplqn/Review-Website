@@ -39,6 +39,7 @@ const Items = () => {
       }
     };
 
+    // to put the rating stars on items page, not done
     const fetchReviews = async (itemId) => {
       const response = await fetch(`/api/reviews/${itemId}`);
       const data = await response.json();
