@@ -5,6 +5,7 @@ import { UserContext } from "../../context/UserContext";
 import { useEffect, useContext, useState } from "react";
 import { validatePassword } from "../../helpers/helpers";
 import loadingTransparent from "../../assets/loadingTransparent.gif";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // where new user can create an account
 const SignUp = () => {
@@ -36,7 +37,7 @@ const SignUp = () => {
         throw new Error("Passwords do not match.");
       }
 
-      const response = await fetch("/api/users", {
+      const response = await fetch(`${ getServerUrl()}/api/users`, {
         method: "POST",
         headers: {
           Accept: "application/json",

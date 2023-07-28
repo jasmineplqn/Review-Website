@@ -12,6 +12,7 @@ import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { bodyOptions, faceOptions } from "../../helpers/constants";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // creating a new request submission
 const Submission = () => {
@@ -47,7 +48,7 @@ const Submission = () => {
         url: form.url,
       };
 
-      const response = await fetch("/api/submissions", {
+      const response = await fetch(`${ getServerUrl()}/api/submissions`, {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -5,6 +5,7 @@ import ItemCard from "../items/ItemCard";
 import { Back, Title, Empty, ImageBox, Container } from "./StyledProfile";
 import { Icon } from "react-icons-kit";
 import { arrow_left } from "react-icons-kit/ikons/arrow_left";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // all the items that user put in favorites
 const Favorites = ({ onBack }) => {
@@ -15,7 +16,7 @@ const Favorites = ({ onBack }) => {
     let mounted = true;
 
     const fetchReviews = async () => {
-      const response = await fetch(`/api/users/${currentUser}`);
+      const response = await fetch(`${ getServerUrl()}/api/users/${currentUser}`);
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);
@@ -23,7 +24,7 @@ const Favorites = ({ onBack }) => {
         if (mounted) {
           const items = [];
           for (const itemId of data.data.favorites) {
-            const itemResponse = await fetch(`/api/items/${itemId}`);
+            const itemResponse = await fetch(`${ getServerUrl()}/api/items/${itemId}`);
             const itemData = await itemResponse.json();
             items.push(itemData.data);
           }

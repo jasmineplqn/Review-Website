@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Rating from "../rating/Rating";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // component with the review and its information
 const ReviewCard = ({ review, refresh, showUser, showItem }) => {
@@ -17,7 +18,7 @@ const ReviewCard = ({ review, refresh, showUser, showItem }) => {
     let mounted = true;
 
     const fetchItemData = async () => {
-      const response = await fetch(`/api/items/${review.itemId}`);
+      const response = await fetch(`${ getServerUrl()}/api/items/${review.itemId}`);
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);
@@ -31,7 +32,9 @@ const ReviewCard = ({ review, refresh, showUser, showItem }) => {
     const fetchUser = async () => {
       // Get user for every review
       if (review.userId) {
-        const response = await fetch(`/api/users/${review.userId}`);
+        const response = await fetch(
+          `${ getServerUrl()}/api/users/${review.userId}`
+        );
         const data = await response.json();
         if (data.status === 400 || data.status === 500) {
           throw new Error(data.message);
@@ -59,7 +62,7 @@ const ReviewCard = ({ review, refresh, showUser, showItem }) => {
   const handleDelete = async () => {
     if (review.userId === currentUser) {
       try {
-        const response = await fetch(`/api/reviews/${review._id}`, {
+        const response = await fetch(`${ getServerUrl()}/api/reviews/${review._id}`, {
           method: "DELETE",
           headers: {
             Accept: "application/json",

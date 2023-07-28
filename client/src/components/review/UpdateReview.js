@@ -6,6 +6,7 @@ import loadingTransparent from "../../assets/loadingTransparent.gif";
 import RatingBoxes from "../rating/RatingBoxes";
 import fitzpatrick from "../../assets/fitzpatrick-scale.png";
 import { ErrorMsg, Status, StatusBox } from "../authentication/StyledForm";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // updates a review and auto-fill the fields with the review that we want to update
 const UpdateReview = () => {
@@ -43,7 +44,7 @@ const UpdateReview = () => {
           ],
         };
 
-        const response = await fetch(`/api/reviews/${review._id}`, {
+        const response = await fetch(`${ getServerUrl()}/api/reviews/${review._id}`, {
           method: "PATCH",
           headers: {
             Accept: "application/json",
@@ -82,7 +83,7 @@ const UpdateReview = () => {
     }
 
     const fetchReview = async () => {
-      const response = await fetch(`/api/reviews/${params.reviewId}`);
+      const response = await fetch(`${ getServerUrl()}/api/reviews/${params.reviewId}`);
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);

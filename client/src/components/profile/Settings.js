@@ -8,6 +8,7 @@ import { Icon } from "react-icons-kit";
 import { arrow_left } from "react-icons-kit/ikons/arrow_left";
 import { validatePassword } from "../../helpers/helpers";
 import { ErrorMsg, Status, StatusBox } from "../authentication/StyledForm";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // account information of user, can update or delete the account too
 const Settings = ({ onBack }) => {
@@ -52,7 +53,7 @@ const Settings = ({ onBack }) => {
 
         updateUser[editingField] = value;
 
-        const response = await fetch(`/api/users/${user._id}`, {
+        const response = await fetch(`${ getServerUrl()}/api/users/${user._id}`, {
           method: "PATCH",
           headers: {
             Accept: "application/json",
@@ -80,7 +81,7 @@ const Settings = ({ onBack }) => {
   const handleDelete = async () => {
     if (user._id === currentUser) {
       try {
-        const response = await fetch(`/api/users/${user._id}`, {
+        const response = await fetch(`${ getServerUrl()}/api/users/${user._id}`, {
           method: "DELETE",
           headers: {
             Accept: "application/json",
@@ -111,7 +112,7 @@ const Settings = ({ onBack }) => {
 
     const fetchUser = async () => {
       if (currentUser) {
-        const response = await fetch(`/api/users/${currentUser}`);
+        const response = await fetch(`${ getServerUrl()}/api/users/${currentUser}`);
         const data = await response.json();
         if (data.status === 400 || data.status === 500) {
           throw new Error(data.message);

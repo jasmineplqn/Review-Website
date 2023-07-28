@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { useEffect, useContext, useState } from "react";
 import loadingTransparent from "../../assets/loadingTransparent.gif";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // where user can log in
 const Login = () => {
@@ -32,7 +33,7 @@ const Login = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("/api/authenticate", {
+      const response = await fetch(`${ getServerUrl()}/api/authenticate`, {
         method: "POST",
         headers: {
           Accept: "application/json",

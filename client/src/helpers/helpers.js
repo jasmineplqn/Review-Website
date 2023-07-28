@@ -12,3 +12,14 @@ export const validatePassword = (password) => {
   }
   return errors;
 };
+
+
+
+export const getServerUrl = () => {
+  if (process.env.ENV) {
+    if (process.env.ENV === "PROD") {
+      return "https://review-website-backend.onrender.com" 
+    }
+  };
+  return "http://localhost:8000" 
+}

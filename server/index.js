@@ -1,11 +1,18 @@
 const express = require("express");
 const morgan = require("morgan");
-const { PORT } = process.env;
+require("dotenv").config();
+const { PORT, ENV} = process.env;
 
 const app = express();
 const port = PORT;
 
 app.use(function (req, res, next) {
+  if(ENV && ENV === "PROD") {
+    res.header("Access-Control-Allow-Origin", "https://skintech-report.vercel.app");
+  }  else {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  }
+
   res.header(
     "Access-Control-Allow-Methods",
     "OPTIONS, HEAD, GET, PUT, POST, DELETE"

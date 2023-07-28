@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import RatingBoxes from "../rating/RatingBoxes";
 import fitzpatrick from "../../assets/fitzpatrick-scale.png";
 import { ErrorMsg, Status, StatusBox } from "../authentication/StyledForm";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // write a new review
 const AddReview = () => {
@@ -42,7 +43,7 @@ const AddReview = () => {
         ],
       };
 
-      const response = await fetch("/api/reviews", {
+      const response = await fetch(`${ getServerUrl()}/api/reviews`, {
         method: "POST",
         headers: {
           Accept: "application/json",

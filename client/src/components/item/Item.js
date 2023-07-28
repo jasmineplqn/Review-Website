@@ -8,6 +8,7 @@ import loadingTransparent from "../../assets/loadingTransparent.gif";
 import { UserContext } from "../../context/UserContext";
 import ReviewCard from "../review/ReviewCard";
 import Rating from "../rating/Rating";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // component for one item page with its description and reviews
 const Item = () => {
@@ -23,7 +24,7 @@ const Item = () => {
     setFavoriteUpdating(true);
     if (user && favoriteUpdating) {
       const response = await fetch(
-        `/api/users/${user._id}/favorites/${params.itemId}`,
+        `${ getServerUrl()}/api/users/${user._id}/favorites/${params.itemId}`,
         {
           method: "PATCH",
           headers: {
@@ -60,7 +61,7 @@ const Item = () => {
     let mounted = true;
 
     const fetchItemData = async () => {
-      const response = await fetch(`/api/items/${params.itemId}`);
+      const response = await fetch(`${ getServerUrl()}/api/items/${params.itemId}`);
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);
@@ -72,7 +73,7 @@ const Item = () => {
     };
 
     const fetchReviews = async () => {
-      const response = await fetch(`/api/reviews?itemId=${params.itemId}`);
+      const response = await fetch(`${ getServerUrl()}/api/reviews?itemId=${params.itemId}`);
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);
@@ -86,7 +87,7 @@ const Item = () => {
     const fetchUser = async () => {
       if (currentUser) {
         // Get current user for favorites
-        const response = await fetch(`/api/users/${currentUser}`);
+        const response = await fetch(`${ getServerUrl()}/api/users/${currentUser}`);
         const data = await response.json();
         if (data.status === 400 || data.status === 500) {
           throw new Error(data.message);

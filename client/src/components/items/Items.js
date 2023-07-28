@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import ItemCard from "./ItemCard";
 import { styled } from "styled-components";
 import loadingTransparent from "../../assets/loadingTransparent.gif";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // component for multiple items
 const Items = () => {
@@ -14,13 +15,13 @@ const Items = () => {
     const category = searchParams.get("category");
     const location = searchParams.get("location");
     if (category && location) {
-      return `/api/items?location=${location}&category=${category}`;
+      return `${ getServerUrl()}/api/items?location=${location}&category=${category}`;
     } else if (category) {
-      return `/api/items?category=${category}`;
+      return `${ getServerUrl()}/api/items?category=${category}`;
     } else if (location) {
-      return `/api/items?location=${location}`;
+      return `${ getServerUrl()}/api/items?location=${location}`;
     }
-    return "/api/items";
+    return `${ getServerUrl()}/api/items`;
   };
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const Items = () => {
 
     // to put the rating stars on items page, not done
     const fetchReviews = async (itemId) => {
-      const response = await fetch(`/api/reviews/${itemId}`);
+      const response = await fetch(`${ getServerUrl()}/api/reviews/${itemId}`);
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);

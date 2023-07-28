@@ -5,6 +5,7 @@ import loadingTransparent from "../../assets/loadingTransparent.gif";
 import { Back, Title, Empty, ImageBox, Container } from "./StyledProfile";
 import { Icon } from "react-icons-kit";
 import { arrow_left } from "react-icons-kit/ikons/arrow_left";
+import {  getServerUrl } from "../../helpers/helpers";
 
 // all the reviews the user made
 const Reviews = ({ onBack }) => {
@@ -16,7 +17,9 @@ const Reviews = ({ onBack }) => {
     let mounted = true;
 
     const fetchReviews = async () => {
-      const response = await fetch(`/api/reviews?userId=${currentUser}`);
+      const response = await fetch(
+        `${ getServerUrl()}/api/reviews?userId=${currentUser}`
+      );
       const data = await response.json();
       if (data.status === 400 || data.status === 500) {
         throw new Error(data.message);
