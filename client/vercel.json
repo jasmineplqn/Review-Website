@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+      {
+        "source": "/api/:path*",
+        "destination": "https://review-website-backend.onrender.com/api/:path*"
+      },
+      {
+        "source": "/api/:path*/",
+        "destination": "https://review-website-backend.onrender.com/api/:path*/"
+      }
+    ]
+  }
