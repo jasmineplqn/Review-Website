@@ -16,8 +16,8 @@ export const validatePassword = (password) => {
 
 
 export const getServerUrl = () => {
-  if (process.env.ENV) {
-    if (process.env.ENV === "PROD") {
+  if (process.env.NODE_ENV) {
+    if (process.env.NODE_ENV === "production") {
       return "https://review-website-backend.onrender.com" 
     }
   };
